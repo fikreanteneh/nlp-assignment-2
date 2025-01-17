@@ -6,10 +6,10 @@ base_dir = os.path.dirname(os.path.abspath(__file__))
 count_vectorizer_model = joblib.load(
     os.path.join(base_dir, 'count_vectorizer_nb_model.pkl'))
 count_vectorizer = joblib.load(os.path.join(base_dir, 'count_vectorizer.pkl'))
-tf_idf_vectorizer_model = joblib.load(
-    os.path.join(base_dir, 'tf_idf_nb_model.pkl'))
-tf_idf_vectorizer = joblib.load(
-    os.path.join(base_dir, 'tf_idf_vectorizer.pkl'))
+tfidf_vectorizer_model = joblib.load(
+    os.path.join(base_dir, 'tfidf_vectorizer_nb_model.pkl'))
+tfidf_vectorizer = joblib.load(
+    os.path.join(base_dir, 'tfidf_vectorizer.pkl'))
 
 unique_label = ['ፖለቲካ', 'ሀገር አቀፍ ዜና', 'ስፖርት', 'ዓለም አቀፍ ዜና', 'ቢዝነስ', 'መዝናኛ']
 
@@ -88,15 +88,15 @@ def count_vectorizer_predict(new_article):
     return predicted_label
 
 
-def tf_idf_predict(new_article):
+def tfidf_vectorizer_predict(new_article):
     # Preprocess the input text
     preprocessed_article = preprocess_text(new_article)
 
     # Transform the text using the same TF-IDF Vectorizer
-    transformed_article = tf_idf_vectorizer.transform(
+    transformed_article = tfidf_vectorizer.transform(
         [preprocessed_article]).toarray()
 
-    predicted_class = tf_idf_vectorizer_model.predict(transformed_article)
+    predicted_class = tfidf_vectorizer_model.predict(transformed_article)
     predicted_label = unique_label[predicted_class[0]]
 
     return predicted_label
