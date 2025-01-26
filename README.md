@@ -20,11 +20,11 @@ This project focuses on classifying Amharic news articles into six distinct cate
 
 This Amharic News Classifier draws inspiration from the research paper, "[An Amharic News Text Classification Dataset](https://arxiv.org/pdf/2103.05639)" by Israel Abebe Azime and Nebil Mohammed. The paper emphasizes the challenges of performing text classification in low-resource languages like Amharic due to the lack of labeled data. It introduces a dataset of over 50,000 news articles categorized into six classes, offering a baseline for classification tasks using simple models such as Naive Bayes with Count Vectorizer and TF-IDF.
 
-We used the same dataset for our classification task and finetuned XLM RoBERTa, a Transformer model, for Amharic news classification. XLM RoBERTa is the only model we found that is trained on Amharic language and performs good. The model was pretrained on 100 different languages, including Amharic, and has over 200 million parameters.
+We used the same dataset for our classification task and fine-tuned XLM RoBERTa, a Transformer model, for Amharic news classification. XLM RoBERTa is the only model we found that is trained on the Amharic language and performs well. The model was pretrained on 100 different languages, including Amharic, and has over 200 million parameters. We deployed the fine-tunded model on Hugging Face and can be found [here](https://huggingface.co/fikreanteneh/AmharicNewsClassifier/tree/main).
 
 Unlike traditional models like Naive Bayes, which rely on simple text features such as word counts or TF-IDF, XLM RoBERTa leverages deep learning and contextual embeddings to deliver higher performance on sequence classification tasks.
 
-We built an API and deployed it on Hugging Face Spaces. The API documentation can be found [here](https://fikreanteneh-amharicnewsclassifier.hf.space/docs) and can be integrated into any application. We also created a small website for users to test the models without writing any code, available [here](https://nlp-assignment-2-1.onrender.com/).
+We built an API and deployed it on Hugging Face Spaces. The api can be integrated into any application. We also created a small website for users to test the models without writing any code, available [here](https://nlp-assignment-2-1.onrender.com/).
 
 The deployed models are:
 
@@ -59,6 +59,13 @@ It was collected from the following sources:
 - VOA Amharic: 6943 articles
 - Walta: 8764 articles
 
+### Sample Data
+
+| headline                            | article                                                                           | category | date              | views | link                                |
+| :---------------------------------- | :-------------------------------------------------------------------------------- | :------- | :---------------- | ----: | :---------------------------------- |
+| የኦሊምፒክ ማጣሪያ ተሳታፊዎች የሚለዩበት ቻምፒዮና ... | ብርሃን ፈይሳየኢትዮጵያ ቦክስ ፌዴሬሽን በየዓመቱ የሚያዘጋጀው የክለቦች ቻምፒዮና በአዲስ አበባ ከተማ በመካሄድ ላይ ይገኛል።... | ስፖርት     | January 14, 2021  |     2 | <https://www.press.et/Ama/?p=39481> |
+| አዲስ ዘመን ድሮ...                       | የአዲስ ዘመን ጋዜጣ ቀደምት ዘገባዎች በእጅጉ ተነባቢ ዛሬም ላገኛቸው በእጅጉ ተነባቢ ናቸው። ...                    | መዝናኛ     | December 28, 2020 |     4 | <https://www.press.et/Ama/?p=38334> |
+
 ### Preprocessing
 
 **Normalization**: Applied character-level normalization to correct inconsistencies in the Amharic script (e.g., ጸሀይ and ፀሐይ). These characters represent the same word, but the Amharic language does not enforce a strict rule on which character to use. Therefore, we normalized them to a consistent character representation.
@@ -66,13 +73,6 @@ It was collected from the following sources:
 **Filtering**: Removed rows with missing values in the category column.
 
 **Splitting**: Used an 80-20 split for training and testing, ensuring a diverse representation of categories in both subsets.
-
-**Sample Data**
-
-| headline                            | article                                                                           | category | date              | views | link                                |
-| :---------------------------------- | :-------------------------------------------------------------------------------- | :------- | :---------------- | ----: | :---------------------------------- |
-| የኦሊምፒክ ማጣሪያ ተሳታፊዎች የሚለዩበት ቻምፒዮና ... | ብርሃን ፈይሳየኢትዮጵያ ቦክስ ፌዴሬሽን በየዓመቱ የሚያዘጋጀው የክለቦች ቻምፒዮና በአዲስ አበባ ከተማ በመካሄድ ላይ ይገኛል።... | ስፖርት     | January 14, 2021  |     2 | <https://www.press.et/Ama/?p=39481> |
-| አዲስ ዘመን ድሮ...                       | የአዲስ ዘመን ጋዜጣ ቀደምት ዘገባዎች በእጅጉ ተነባቢ ዛሬም ላገኛቸው በእጅጉ ተነባቢ ናቸው። ...                    | መዝናኛ     | December 28, 2020 |     4 | <https://www.press.et/Ama/?p=38334> |
 
 ## Implementation Overview
 
