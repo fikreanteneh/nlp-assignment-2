@@ -11,22 +11,24 @@ This project focuses on classifying Amharic news articles into six distinct cate
 
 ### Resources
 
-- [Site For Testing Esaily](https://nlp-assignment-2-1.onrender.com/)
-- [The News Dataset on Hugging Face](https://huggingface.co/datasets/fikreanteneh/Amharic-News-Classification)
+- [Interactive Website for testing the models](https://nlp-assignment-2-1.onrender.com/)
+- [The News Dataset](https://huggingface.co/datasets/fikreanteneh/Amharic-News-Classification)
 - [Finetuned Classifier Model on Hugging Face](https://huggingface.co/fikreanteneh/AmharicNewsClassifier/tree/main)
 - [GitHub Repository](https://github.com/fikreanteneh/nlp-assignment-2)
 
-## Inspiration
+## Summary
 
 This Amharic News Classifier draws inspiration from the research paper, "[An Amharic News Text Classification Dataset](https://arxiv.org/pdf/2103.05639)" by Israel Abebe Azime and Nebil Mohammed. The paper emphasizes the challenges of performing text classification in low-resource languages like Amharic due to the lack of labeled data. It introduces a dataset of over 50,000 news articles categorized into six classes, offering a baseline for classification tasks using simple models such as Naive Bayes with Count Vectorizer and TF-IDF.
 
-We used the same dataset for our classification task and finetuned XLM RoBERTa, a Transformer model, for Amharic news classification. XLM RoBERTa is the only model we found that is trained on Amharic language. The model was pretrained on 100 different languages, including Amharic, and has over 200 million parameters.
+We used the same dataset for our classification task and finetuned XLM RoBERTa, a Transformer model, for Amharic news classification. XLM RoBERTa is the only model we found that is trained on Amharic language and performs good. The model was pretrained on 100 different languages, including Amharic, and has over 200 million parameters.
 
-Unlike traditional models like Naive Bayes, which rely on simple text features such as word counts or TF-IDF, XLM RoBERTa leverages deep learning and contextual embeddings to deliver superior performance on sequence classification tasks. This makes it an ideal choice for Amharic, where labeled datasets are scarce, and more robust models are needed.
+Unlike traditional models like Naive Bayes, which rely on simple text features such as word counts or TF-IDF, XLM RoBERTa leverages deep learning and contextual embeddings to deliver higher performance on sequence classification tasks.
 
-In this project, we deployed three models, with XLM RoBERTa and the Naive Baye models from the paper.
+We built an API and deployed it on Hugging Face Spaces. The API documentation can be found [here](https://fikreanteneh-amharicnewsclassifier.hf.space/docs) and can be integrated into any application. We also created a small website for users to test the models without writing any code, available [here](https://nlp-assignment-2-1.onrender.com/).
 
-- XLM RoBERTa (Finetuned for Classification on Amharic News)
+The deployed models are:
+
+- XLM RoBERTa (Fine-tuned for Classification on Amharic News)
 - Naive Bayes with Count Vectorizer
 - Naive Bayes with TF-IDF
 
@@ -67,10 +69,10 @@ It was collected from the following sources:
 
 **Sample Data**
 
-| headline                            | category | date              | views | link                                |
-| :---------------------------------- | :------- | :---------------- | ----: | :---------------------------------- |
-| የኦሊምፒክ ማጣሪያ ተሳታፊዎች የሚለዩበት ቻምፒዮና ... | ስፖርት     | January 14, 2021  |     2 | <https://www.press.et/Ama/?p=39481> |
-| አዲስ ዘመን ድሮ...                       | መዝናኛ     | December 28, 2020 |     4 | <https://www.press.et/Ama/?p=38334> |
+| headline                            | article                                                                           | category | date              | views | link                                |
+| :---------------------------------- | :-------------------------------------------------------------------------------- | :------- | :---------------- | ----: | :---------------------------------- |
+| የኦሊምፒክ ማጣሪያ ተሳታፊዎች የሚለዩበት ቻምፒዮና ... | ብርሃን ፈይሳየኢትዮጵያ ቦክስ ፌዴሬሽን በየዓመቱ የሚያዘጋጀው የክለቦች ቻምፒዮና በአዲስ አበባ ከተማ በመካሄድ ላይ ይገኛል።... | ስፖርት     | January 14, 2021  |     2 | <https://www.press.et/Ama/?p=39481> |
+| አዲስ ዘመን ድሮ...                       | የአዲስ ዘመን ጋዜጣ ቀደምት ዘገባዎች በእጅጉ ተነባቢ ዛሬም ላገኛቸው በእጅጉ ተነባቢ ናቸው። ...                    | መዝናኛ     | December 28, 2020 |     4 | <https://www.press.et/Ama/?p=38334> |
 
 ## Implementation Overview
 
@@ -82,13 +84,9 @@ We have implemented the following models:
 
 ### 1. XLM RoBERTa (Pretrained and Finetuned)
 
-We fine-tuned the XLM-RoBERTa model developed by Facebook to classify Amharic news articles into six distinct categories. XLM-RoBERTa, a pre-trained multilingual language model supporting 100 languages, including Amharic, was chosen for its strong performance on multilingual text classification tasks.
+We fine-tuned the XLM-RoBERTa model to classify Amharic news articles into six distinct categories. To adapt the model to our task, we added a classification layer on top of the pre-trained XLM-RoBERTa model. The fine-tuning process was conducted on the Amharic news dataset. During training, we used a batch size of 16, a learning rate of 5e-5, and a maximum sequence length of 512 tokens and the model was trained for 5 epochs. Dynamic padding was implemented using a data collator to ensure efficient processing of variable-length input sequences.
 
-To adapt the model to our task, we added a classification layer on top of the pre-trained XLM-RoBERTa model. The fine-tuning process was conducted on the Amharic news dataset.
-
-During training, we used a batch size of 16, a learning rate of 5e-5, and a maximum sequence length of 512 tokens. Gradient accumulation with 4 steps was employed to handle memory constraints, and the model was trained for 5 epochs. Dynamic padding was implemented using a data collator to ensure efficient processing of variable-length input sequences.
-
-The entire training and fine-tuning process utilized the Transformers library from hugging face. Once fine-tuned, the model was deployed on Hugging Face's model hub for easy access and integration into applications. We developed a API to serve the model, enabling real-time predictions on Amharic news articles.
+The entire training and fine-tuning process utilized the Transformers library from hugging face. Once fine-tuned, the model was deployed on Hugging Face's model hub for easy access and integration into applications.
 
 ### Evaluation Results
 
@@ -104,6 +102,10 @@ The entire training and fine-tuning process utilized the Transformers library fr
 
 ### 2. Count Vectorizer
 
+We used the Naive Bayes approach with Count Vectorizer as a feature extraction method. Naive Bayes is a simple probabilistic classifier based on applying Bayes' theorem with strong (naive) independence assumptions between the features. The Count Vectorizer is used to convert a collection of text documents into a matrix of token counts. Then the Naive Bayes model is trained on the count matrix to classify the news articles into one of the six categories.
+
+For model training, we used Scikit-learn's MultinomialNB model with default parameters. The model was trained on the training set and evaluated on the test set.
+
 ### Evaluation Results
 
 | Category                   | Precision | Recall   | F1 Score |
@@ -118,6 +120,10 @@ The entire training and fine-tuning process utilized the Transformers library fr
 
 ### 3. TF-IDF
 
+The TF TF IDF (Term Frequency-Inverse Document Frequency) approach is another simple yet effective method for text classification. It is based on the idea that words that occur frequently in a document but rarely in other documents are more important for classification. The TF-IDF vectorizer is used to convert a collection of text documents into a matrix of TF-IDF features. Then the Naive Bayes model is trained on the TF-IDF matrix to classify the news articles into one of the six categories.
+
+For model training, we used Scikit-learn's MultinomialNB model with default parameters again.
+
 ### Evaluation Results
 
 | Category                   | Precision | Recall   | F1 Score |
@@ -129,3 +135,11 @@ The entire training and fine-tuning process utilized the Transformers library fr
 | ቢዝነስ (Business)            | 0.37      | 0.83     | 0.52     |
 | መዝናኛ (Entertainment)       | 0.23      | 0.84     | 0.36     |
 | **Average**                | **0.62**  | **0.76** | **0.63** |
+
+## Comparison of Models (Averages)
+
+| Model                          | Precision | Recall | F1 Score |
+| ------------------------------ | --------- | ------ | -------- |
+| XLM-RoBERTa                    | 0.8670    | 0.8557 | 0.8602   |
+| Count Vectorizer + Naive Bayes | 0.60      | 0.74   | 0.62     |
+| TF-IDF + Naive Bayes           | 0.62      | 0.76   | 0.63     |
