@@ -86,7 +86,7 @@ const Home = () => {
                 >
                     <TabsList className="w-full">
                         <TabsTrigger value="xlm_roberta_finetuned" className="w-full">XLM RoBERTa Finetuned</TabsTrigger>
-                        <TabsTrigger value="Count Vecorizer" className="w-full">Count Vecorizer</TabsTrigger>
+                        <TabsTrigger value="count_vectorizer" className="w-full">Count Vecorizer</TabsTrigger>
                         <TabsTrigger value="tfidf_vectorizer" className="w-full">TF IDF</TabsTrigger>
                     </TabsList>
                 </Tabs>
