@@ -97,7 +97,7 @@ const Home = () => {
                     {error
                         ? <p className="text-center text-destructive">{error}</p>
                         : result
-                            ? <p className="text-xl font-extrabold text-center text-green-500">{result}</p>
+                            ? <p className="text-xl font-extrabold text-center text-paint">{result}</p>
                             : null
                     }
                 </div>
