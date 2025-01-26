@@ -15,7 +15,7 @@ const Layout = () => {
       /> */}
       <Particles
         className="absolute inset-0 z-0"
-        quantity={200}
+        quantity={2000}
         ease={80}
         color={"#A07CFE"} //TODO: With Variable
         refresh

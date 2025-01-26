@@ -1,2 +1,4 @@
 __pycache__/
+api/models
 classifier/data/Amharic News Dataset.csv
+classifier/FacebookAI

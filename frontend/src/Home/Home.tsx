@@ -1,13 +1,15 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
+import MarkdownReader from './../components/MarkDownReader';
+import DOC from "./DOC";
 
 type ClassifyType = "count_vectorizer" | "tfidf_vectorizer" | "xlm_roberta_finetuned";
 
 const Home = () => {
-
+    console.log(DOC);
     const [news, setNews] = useState<string>("");
     const [classifyType, setClassifyType] = useState<ClassifyType>("xlm_roberta_finetuned");
     const [result, setResult] = useState<string>(" ");
@@ -68,7 +70,7 @@ const Home = () => {
     };
 
     return (
-        <Card className="relative max-w-3xl w-6xl" >
+        <Card className="relative max-w-3xl border-none w-6xl" >
 
             <CardHeader>
                 <CardTitle className="text-2xl text-center">Amharic News Classification</CardTitle>
@@ -105,8 +107,10 @@ const Home = () => {
                     <Button className="w-full" variant={"outline"} onClick={onPasteNews}>PasteNews</Button>
                     <Button className="w-full" variant={loading ? "ghost" : "default"} onClick={onClassifyNews}>Classifiy</Button>
                 </div>
-
             </CardContent>
+            <CardFooter>
+                <MarkdownReader content={DOC} />
+            </CardFooter>
         </Card>
     );
 };
