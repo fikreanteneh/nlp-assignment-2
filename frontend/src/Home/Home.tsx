@@ -94,8 +94,12 @@ const Home = () => {
                 <Textarea className="h-[45vh]" value={news} onChange={(e) => { setNews(e.target.value) }} />
 
                 <div>
-                    <p className="text-xl font-extrabold text-center text-green-500">{result}</p>
-                    <p className="text-center text-destructive">{error}</p>
+                    {error
+                        ? <p className="text-center text-destructive">{error}</p>
+                        : result
+                            ? <p className="text-xl font-extrabold text-center text-green-500">{result}</p>
+                            : null
+                    }
                 </div>
                 <div className="flex gap-2">
                     <Button className="w-full" variant={"outline"} onClick={onPasteNews}>PasteNews</Button>
