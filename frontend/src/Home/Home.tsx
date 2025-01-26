@@ -108,9 +108,6 @@ const Home = () => {
                     <Button className="w-full" variant={loading ? "ghost" : "default"} onClick={onClassifyNews}>Classifiy</Button>
                 </div>
             </CardContent>
-            <CardFooter>
-                <MarkdownReader content={DOC} />
-            </CardFooter>
         </Card>
     );
 };
