@@ -91,7 +91,7 @@ const Home = () => {
                     </TabsList>
                 </Tabs>
 
-                <Textarea className="h-[45vh]" value={news} onChange={(e) => { setNews(e.target.value) }} />
+                <Textarea className="h-[45vh] scrollbar-thin scrollbar-thumb-primary scrollbar-track-muted" value={news} onChange={(e) => { setNews(e.target.value) }} />
 
                 <div>
                     {error
