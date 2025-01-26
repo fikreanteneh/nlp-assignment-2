@@ -1,6 +1,6 @@
 # Amharic News Classification
 
-This is an Amharic News Classification Website found at [https://nlp-assignment-2-1.onrender.com/](https://nlp-assignment-2-1.onrender.com/) and the GitHub repository can be found at [https://github.com/fikreanteneh/nlp-assignment-2](https://github.com/fikreanteneh/nlp-assignment-2) that classifies news into the following six categories:
+This project focuses on classifying Amharic news articles into six distinct categories.
 
 - ሀገር አቀፍ ዜና (National News)
 - መዝናኛ (Entertainment)
@@ -8,6 +8,13 @@ This is an Amharic News Classification Website found at [https://nlp-assignment-
 - ቢዝነስ (Business)
 - አለም አቀፍ ዜና (World News)
 - ፖለቲካ (Politics)
+
+### Resources
+
+- [Site For Testing Esaily](https://nlp-assignment-2-1.onrender.com/)
+- [The News Dataset on Hugging Face](https://huggingface.co/datasets/fikreanteneh/Amharic-News-Classification)
+- [Finetuned Classifier Model on Hugging Face](https://huggingface.co/fikreanteneh/AmharicNewsClassifier/tree/main)
+- [GitHub Repository](https://github.com/fikreanteneh/nlp-assignment-2)
 
 ## Inspiration
 
