@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
@@ -68,7 +68,7 @@ const Home = () => {
     };
 
     return (
-        <Card className="relative max-w-3xl border-none w-6xl" >
+        <Card className="relative max-w-3xl w-6xl" >
 
             <CardHeader>
                 <CardTitle className="text-2xl text-center">Amharic News Classification</CardTitle>
@@ -106,11 +106,7 @@ const Home = () => {
                     <Button className="w-full" variant={loading ? "ghost" : "default"} onClick={onClassifyNews}>Classifiy</Button>
                 </div>
 
-
             </CardContent>
-
-            <CardFooter className="flex flex-col gap-2">
-            </CardFooter>
         </Card>
     );
 };
