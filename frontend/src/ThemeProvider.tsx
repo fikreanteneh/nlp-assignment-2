@@ -66,7 +66,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
     return (
         <ThemeContext.Provider value={value}>
-            <div className={`${themeClass} ${colorClass} p-1 text-main-1`}>
+            <div className={`${themeClass} ${colorClass} text-main-1`}>
                 {children}
             </div>
         </ThemeContext.Provider>

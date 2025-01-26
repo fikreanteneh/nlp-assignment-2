@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import useTheme from '../ThemeProvider';
 
 const ThemeSwitcher = () => {
@@ -9,10 +10,14 @@ const ThemeSwitcher = () => {
 
 
     return (
-        <div className="fixed top-0 right-0 flex gap-4">
-            <button onClick={handleThemeChange} className="p-2 bg-gray-200 rounded">
-                Toggle Theme
-            </button>
+        <div className="fixed flex gap-4 top-2 right-2">
+            <Button
+                className="w-full"
+                variant={"default"}
+                onClick={handleThemeChange}
+            >
+                {currentTheme === 'dark' ? 'Light' : 'Dark'} Mode
+            </Button>
         </div>
     );
 };
